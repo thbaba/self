@@ -1,11 +1,9 @@
 package com.denizcanbagdatlioglu.self.user.repository;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Optional;
-
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
+import com.denizcanbagdatlioglu.self.user.domain.entity.User;
+import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
+import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +17,11 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
-import com.denizcanbagdatlioglu.self.user.domain.entity.User;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Optional;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @JdbcTest
 @Testcontainers
@@ -60,7 +59,7 @@ public class UserRepositoryIntegrationTest {
     @Test
     @DisplayName("findUserById successfully find user when user exists")
     public void findUserByIDShouldFindUserWhenExists() {
-        jdbcTemplate.update("insert into users(user_id, birth_date, gender) values (?, ?, ?::gender)", 
+        jdbcTemplate.update("insert into users(id, birth_date, gender) values (?, ?, ?::gender)",
             user.id().asUuid(), 
             Date.valueOf(user.birthDate().getDate()),
             user.gender().name());
@@ -94,7 +93,7 @@ public class UserRepositoryIntegrationTest {
     @Test
     @DisplayName("Do not register user if there is already registered user with same id")
     public void registerUserFailWhenThereIsSuchAUser() {
-        jdbcTemplate.update("insert into users(user_id, birth_date, gender) values (?, ?, ?::gender)", 
+        jdbcTemplate.update("insert into users(id, birth_date, gender) values (?, ?, ?::gender)",
             user.id().asUuid(), 
             Date.valueOf(user.birthDate().getDate()),
             user.gender().name());

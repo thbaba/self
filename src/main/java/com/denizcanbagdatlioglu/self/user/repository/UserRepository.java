@@ -1,17 +1,16 @@
 package com.denizcanbagdatlioglu.self.user.repository;
 
-import java.sql.Date;
-import java.util.Optional;
-
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import com.denizcanbagdatlioglu.self.user.domain.repository.IUserRepository;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Date;
+import java.util.Optional;
 
 @Repository
 public class UserRepository implements IUserRepository{
@@ -26,9 +25,9 @@ public class UserRepository implements IUserRepository{
     public Optional<User> findUserByID(ID id) {
         Optional<User> maybeUser;
         try {
-            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE user_id = ?",
+            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",
                 (rs, _) -> {
-                    ID userID = ID.of(rs.getString("user_id"));
+                    ID userID = ID.of(rs.getString("id"));
                     BirthDate userBirthDate = new BirthDate(rs.getDate("birth_date").toLocalDate());
                     Gender userGender = Gender.valueOf(rs.getString("gender"));
                     return User.builder().id(userID).birthDate(userBirthDate).gender(userGender).build();
@@ -51,7 +50,7 @@ public class UserRepository implements IUserRepository{
             return Optional.empty();
         }
 
-        jdbcTemplate.update("insert into users(user_id, birth_date, gender) values (?, ?, ?::gender)", 
+        jdbcTemplate.update("insert into users(id, birth_date, gender) values (?, ?, ?::gender)",
             user.id().asUuid(), 
             Date.valueOf(user.birthDate().getDate()),
             user.gender().name()
