@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.jwt;
+package com.denizcanbagdatlioglu.self.config.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

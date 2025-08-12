@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.jwt;
+package com.denizcanbagdatlioglu.self.config.jwt;
 
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import lombok.Setter;

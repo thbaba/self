@@ -1,7 +1,7 @@
 package com.denizcanbagdatlioglu.self.config;
 
-import com.denizcanbagdatlioglu.self.jwt.JwtAuthenticationFilter;
-import com.denizcanbagdatlioglu.self.jwt.JwtAuthenticationProvider;
+import com.denizcanbagdatlioglu.self.config.jwt.JwtAuthenticationFilter;
+import com.denizcanbagdatlioglu.self.config.jwt.JwtAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

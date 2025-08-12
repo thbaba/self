@@ -1,6 +1,6 @@
-package com.denizcanbagdatlioglu.self.jwt;
+package com.denizcanbagdatlioglu.self.config.jwt;
 
-import com.denizcanbagdatlioglu.self.common.ApplicationConstants;
+import com.denizcanbagdatlioglu.self.config.AppConst;
 import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class JwtUtil {
 
-    private final SecretKey SIGNING_KEY = Keys.hmacShaKeyFor(ApplicationConstants.JWT_SECRET_DEFAULT_VALUE.getBytes(StandardCharsets.UTF_8));
+    private final SecretKey SIGNING_KEY = Keys.hmacShaKeyFor(AppConst.JWT_SECRET_DEFAULT_VALUE.getBytes(StandardCharsets.UTF_8));
 
     public String generateToken(User user) {
         return Jwts.builder()

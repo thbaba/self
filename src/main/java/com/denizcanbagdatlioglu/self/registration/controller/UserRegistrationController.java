@@ -10,7 +10,7 @@ import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
-import com.denizcanbagdatlioglu.self.jwt.JwtUtil;
+import com.denizcanbagdatlioglu.self.config.jwt.JwtUtil;
 import com.denizcanbagdatlioglu.self.registration.domain.usecase.IRegistrationUseCase;
 import com.denizcanbagdatlioglu.self.registration.dto.UserRegistrationRequest;
 
