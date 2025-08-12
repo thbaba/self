@@ -1,10 +1,7 @@
 package com.denizcanbagdatlioglu.self.registration.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.denizcanbagdatlioglu.self.registration.dto.UserRegistrationResponse;
 import com.denizcanbagdatlioglu.self.registration.exception.UserRegistrationException;
@@ -37,7 +34,7 @@ public class UserRegistrationController {
 
         return maybeUser.map(jwtUtil::generateToken)
                 .map(UserRegistrationResponse::new)
-                .map(response -> ResponseEntity.ok().body(response))
+                .map(ResponseEntity::ok)
                 .orElseThrow(() -> new UserRegistrationException("Registration failed!"));
     }
 
