@@ -6,7 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
-public abstract class Feature {
+public abstract class Figure {
 
     private final ID id;
 
@@ -16,7 +16,7 @@ public abstract class Feature {
 
     private final String description;
 
-    protected Feature(ID id, String name, String brief, String description) {
+    protected Figure(ID id, String name, String brief, String description) {
         this.id = id;
         this.name = name;
         this.brief = brief;
@@ -39,7 +39,22 @@ public abstract class Feature {
         return description;
     }
 
-    public static class FeatureBuilder<T> {
+    @Override
+    public boolean equals(Object other) {
+        if(this == other) return true;
+        if(!(other instanceof Figure figure)) return false;
+        return id.equals(figure.id) &&
+                name.equals(figure.name) &&
+                brief.equals(figure.brief) &&
+                description.equals(figure.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, brief, description);
+    }
+
+    public static class FigureBuilder<T> {
 
         private final Class<T> clazz;
 
@@ -51,31 +66,31 @@ public abstract class Feature {
 
         private String description;
 
-        protected FeatureBuilder(Class<T> clazz) {
+        protected FigureBuilder(Class<T> clazz) {
             this.clazz = clazz;
         }
 
-        public FeatureBuilder<T> id(ID id) {
+        public FigureBuilder<T> id(ID id) {
             this.id = id;
             return this;
         }
 
-        public FeatureBuilder<T> id(String id) {
+        public FigureBuilder<T> id(String id) {
             this.id = ID.of(id);
             return this;
         }
 
-        public FeatureBuilder<T> name(String name) {
+        public FigureBuilder<T> name(String name) {
             this.name = name;
             return this;
         }
 
-        public FeatureBuilder<T> brief(String brief) {
+        public FigureBuilder<T> brief(String brief) {
             this.brief = brief;
             return this;
         }
 
-        public FeatureBuilder<T> description(String description) {
+        public FigureBuilder<T> description(String description) {
             this.description = description;
             return this;
         }

@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.registration.mapper;
+package com.denizcanbagdatlioglu.self.registration.controller.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,7 +10,7 @@ import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
-import com.denizcanbagdatlioglu.self.registration.dto.UserRegistrationRequest;
+import com.denizcanbagdatlioglu.self.registration.controller.dto.UserRegistrationRequest;
 
 @Mapper(componentModel = "spring")
 public interface RegistrationMapper {

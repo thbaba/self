@@ -5,7 +5,7 @@ import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import com.denizcanbagdatlioglu.self.user.domain.repository.IUserRepository;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +35,7 @@ public class UserRepository implements IUserRepository{
                 id.asUuid()
             );
             maybeUser = Optional.of(user);
-        } catch(EmptyResultDataAccessException e) {
+        } catch(DataAccessException e) {
             maybeUser = Optional.empty();
         }
 
