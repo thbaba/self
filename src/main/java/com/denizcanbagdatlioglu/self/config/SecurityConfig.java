@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter(), AnonymousAuthenticationFilter.class)
                 .authorizeHttpRequests(
                         request -> request.requestMatchers(HttpMethod.POST, "/api/registration").permitAll()
+                                .requestMatchers("/api/wiki/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .build();
