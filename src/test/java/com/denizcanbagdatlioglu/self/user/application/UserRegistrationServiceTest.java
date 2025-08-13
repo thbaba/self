@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.registration.application;
+package com.denizcanbagdatlioglu.self.user.application;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -20,7 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import com.denizcanbagdatlioglu.self.user.domain.repository.IUserRepository;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
 
 @ExtendWith(MockitoExtension.class)

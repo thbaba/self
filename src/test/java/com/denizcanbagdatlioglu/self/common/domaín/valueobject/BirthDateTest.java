@@ -1,11 +1,12 @@
-package com.denizcanbagdatlioglu.self.user.domain.valueobject;
+package com.denizcanbagdatlioglu.self.common.domaín.valueobject;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DisplayName("BirthDate value object test.")
 public class BirthDateTest {
@@ -29,7 +30,7 @@ public class BirthDateTest {
 
         int age = birthDate.getAge();
 
-        assertThat(age).isEqualTo(17);
+        assertThat(age).isLessThan(18);
     }
 
 

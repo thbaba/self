@@ -3,7 +3,7 @@ package com.denizcanbagdatlioglu.self.user.repository;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import com.denizcanbagdatlioglu.self.user.domain.repository.IUserRepository;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

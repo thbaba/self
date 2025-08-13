@@ -13,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
 
 @ExtendWith(MockitoExtension.class)

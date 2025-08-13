@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 
 @DisplayName("UserBuilder test.")
 public class UserBuilderTest {

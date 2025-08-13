@@ -1,8 +1,8 @@
-package com.denizcanbagdatlioglu.self.registration.application;
+package com.denizcanbagdatlioglu.self.user.application;
 
 import java.util.Optional;
 
-import com.denizcanbagdatlioglu.self.registration.domain.usecase.IRegistrationUseCase;
+import com.denizcanbagdatlioglu.self.user.domain.usecase.IRegistrationUseCase;
 import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 import com.denizcanbagdatlioglu.self.user.domain.repository.IUserRepository;
 

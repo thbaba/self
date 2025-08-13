@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.registration.domain.usecase;
+package com.denizcanbagdatlioglu.self.user.domain.usecase;
 
 import java.util.Optional;
 

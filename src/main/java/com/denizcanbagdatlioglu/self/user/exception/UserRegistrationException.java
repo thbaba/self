@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.registration.exception;
+package com.denizcanbagdatlioglu.self.user.exception;
 
 public class UserRegistrationException extends RuntimeException{
 

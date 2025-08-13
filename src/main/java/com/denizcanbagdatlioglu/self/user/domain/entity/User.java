@@ -3,7 +3,7 @@ package com.denizcanbagdatlioglu.self.user.domain.entity;
 import java.util.Objects;
 
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
-import com.denizcanbagdatlioglu.self.user.domain.valueobject.BirthDate;
+import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.user.domain.valueobject.Gender;
 
 public class User {

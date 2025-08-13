@@ -1,18 +1,18 @@
-package com.denizcanbagdatlioglu.self.registration.controller;
+package com.denizcanbagdatlioglu.self.user.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.denizcanbagdatlioglu.self.registration.controller.dto.UserRegistrationResponse;
-import com.denizcanbagdatlioglu.self.registration.exception.UserRegistrationException;
-import com.denizcanbagdatlioglu.self.registration.controller.mapper.RegistrationMapper;
+import com.denizcanbagdatlioglu.self.user.controller.dto.UserRegistrationResponse;
+import com.denizcanbagdatlioglu.self.user.exception.UserRegistrationException;
+import com.denizcanbagdatlioglu.self.user.controller.mapper.RegistrationMapper;
 import com.denizcanbagdatlioglu.self.user.domain.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
 import com.denizcanbagdatlioglu.self.config.jwt.JwtUtil;
-import com.denizcanbagdatlioglu.self.registration.domain.usecase.IRegistrationUseCase;
-import com.denizcanbagdatlioglu.self.registration.controller.dto.UserRegistrationRequest;
+import com.denizcanbagdatlioglu.self.user.domain.usecase.IRegistrationUseCase;
+import com.denizcanbagdatlioglu.self.user.controller.dto.UserRegistrationRequest;
 
 import java.util.Optional;
 

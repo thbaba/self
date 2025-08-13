@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.registration.controller.dto;
+package com.denizcanbagdatlioglu.self.user.controller.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

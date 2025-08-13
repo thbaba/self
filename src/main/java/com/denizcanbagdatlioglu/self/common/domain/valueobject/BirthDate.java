@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.user.domain.valueobject;
+package com.denizcanbagdatlioglu.self.common.domain.valueobject;
 
 import java.time.LocalDate;
 import java.time.Period;
