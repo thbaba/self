@@ -38,21 +38,27 @@ public class InsightController {
     @GetMapping
     public ResponseEntity<List<InsightResponse>> listInsights(
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
-            @RequestParam(name = "page", defaultValue = "0") int page
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            JwtAuthentication authentication
     ) {
         var response = service.getInsights(pageSize, page)
-                .stream().map(mapper::toResponse).toList();
+                .stream()
+                .filter(insight -> insight.author().id().equals(ID.of(authentication.getName())))
+                .map(mapper::toResponse).toList();
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<InsightResponse> listInsight(
-            @PathVariable(name = "id") String idStr
+            @PathVariable(name = "id") String idStr,
+            JwtAuthentication authentication
     ) {
         ID id = ID.of(idStr);
         Optional<Insight> maybeInsight = service.getInsight(id);
-        return maybeInsight.map(mapper::toResponse)
+        return maybeInsight
+                .filter(insight -> insight.author().id().equals(ID.of(authentication.getName())))
+                .map(mapper::toResponse)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.ok(null));
     }
