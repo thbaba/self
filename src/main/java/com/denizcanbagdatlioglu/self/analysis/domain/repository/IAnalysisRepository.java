@@ -17,4 +17,6 @@ public interface IAnalysisRepository {
 
     List<Analysis> findAnalyses(ID userID, int analysesCount);
 
+    boolean saveAnalysis(ID userID, ID insightID, String analysis);
+
 }

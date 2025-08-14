@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface AnalyzeUseCase {
 
-    Optional<Analysis> analyze(String userID, String insightID);
+    Optional<Analysis> analyzeAndSave(String userID, String insightID);
 
 }

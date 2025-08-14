@@ -33,7 +33,7 @@ public class AnalysisService implements AnalyzeUseCase, GenerateQuestionUseCase,
 
 
     @Override
-    public Optional<Analysis> analyze(String userIDStr, String insightIDStr) {
+    public Optional<Analysis> analyzeAndSave(String userIDStr, String insightIDStr) {
         ID userID = ID.of(userIDStr);
         ID insightID = ID.of(insightIDStr);
 
@@ -43,6 +43,10 @@ public class AnalysisService implements AnalyzeUseCase, GenerateQuestionUseCase,
             List<Analysis> analyses = repository.findAnalyses(userID, AppConst.AI_HISTORY_SIZE);
 
             String analysis = analyzeEngine.analyze(new BirthDate(birthDate), insight, analyses);
+
+            boolean isSaved = repository.saveAnalysis(userID, insightID, analysis);
+            if(!isSaved)
+                throw new Exception("Analysis could not be saved.");
 
             return Optional.of(Analysis.builder().id(ID.random()).insight(insight).analysis(analysis).build());
         } catch (Exception e) {

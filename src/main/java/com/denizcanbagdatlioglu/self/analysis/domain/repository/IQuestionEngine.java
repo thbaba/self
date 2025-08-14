@@ -9,6 +9,4 @@ public interface IQuestionEngine {
 
     String get(BirthDate birthDate, List<Analysis> analyses);
 
-    String get(BirthDate birthDate, Analysis... analyses);
-
 }

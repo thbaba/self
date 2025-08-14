@@ -2,6 +2,8 @@ package com.denizcanbagdatlioglu.self.analysis.domain.entity;
 
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 
+import java.util.Objects;
+
 public class Analysis {
     
     private final ID id;
@@ -61,5 +63,18 @@ public class Analysis {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if(this == other) return true;
+        if(!(other instanceof Analysis otherAnalysis)) return false;
+        return id.equals(otherAnalysis.id)
+                && analysis.equals(otherAnalysis.analysis)
+                && insight.equals(otherAnalysis.insight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, insight, analysis);
+    }
 
 }

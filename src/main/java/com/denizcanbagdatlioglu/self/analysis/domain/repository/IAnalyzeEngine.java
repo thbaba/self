@@ -9,6 +9,4 @@ public interface IAnalyzeEngine {
 
     String analyze(BirthDate birthDate, String insight, List<Analysis> analyses);
 
-    String get(BirthDate birthDate, String insight, Analysis... analyses);
-
 }

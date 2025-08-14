@@ -21,8 +21,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AnalysisServiceTest {
@@ -51,12 +50,18 @@ public class AnalysisServiceTest {
         when(repository.findInsightByID(any(), any())).thenReturn(Optional.of(insight));
         when(repository.findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE))).thenReturn(new ArrayList<>());
         when(analyzeEngine.analyze(any(BirthDate.class), any(), any())).thenReturn(analysisText);
+        when(repository.saveAnalysis(any(), any(), anyString())).thenReturn(true);
 
-        Optional<Analysis> result = service.analyze(userID, insightID);
+        Optional<Analysis> result = service.analyzeAndSave(userID, insightID);
 
         Assertions.assertThat(result).isPresent();
         Assertions.assertThat(result).get().extracting(Analysis::analysis).isEqualTo(analysisText);
         Assertions.assertThat(result).get().extracting(Analysis::insight).isEqualTo(insight);
+        verify(repository).findBirthDateByID(any());
+        verify(repository).findInsightByID(any(), any());
+        verify(repository).findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE));
+        verify(analyzeEngine).analyze(any(BirthDate.class), any(), any());
+        verify(repository).saveAnalysis(any(), any(), anyString());
     }
 
     @Test
@@ -71,9 +76,14 @@ public class AnalysisServiceTest {
         when(repository.findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE))).thenReturn(new ArrayList<>());
         when(analyzeEngine.analyze(any(BirthDate.class), any(), any())).thenThrow(RuntimeException.class);
 
-        Optional<Analysis> result = service.analyze(userID, insightID);
+        Optional<Analysis> result = service.analyzeAndSave(userID, insightID);
 
         Assertions.assertThat(result).isEmpty();
+        verify(repository).findBirthDateByID(any());
+        verify(repository).findInsightByID(any(), any());
+        verify(repository).findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE));
+        verify(analyzeEngine).analyze(any(BirthDate.class), any(), any());
+        verify(repository, never()).saveAnalysis(any(), any(), anyString());
     }
 
 
@@ -90,6 +100,8 @@ public class AnalysisServiceTest {
 
         Assertions.assertThat(result).isPresent();
         Assertions.assertThat(result).get().extracting(Question::get).isEqualTo(questionText);
+        verify(repository).findBirthDateByID(any());
+        verify(questionEngine).get(any(), anyList());
     }
 
     @Test
@@ -103,5 +115,7 @@ public class AnalysisServiceTest {
         var result = service.generateQuestion(userID);
 
         Assertions.assertThat(result).isEmpty();
+        verify(repository).findBirthDateByID(any());
+        verify(questionEngine).get(any(), anyList());
     }
 }
