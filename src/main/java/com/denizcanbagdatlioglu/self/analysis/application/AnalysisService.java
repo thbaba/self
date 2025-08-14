@@ -1,4 +1,4 @@
-package com.denizcanbagdatlioglu.self.analysis.domain.application;
+package com.denizcanbagdatlioglu.self.analysis.application;
 
 import com.denizcanbagdatlioglu.self.analysis.domain.entity.Analysis;
 import com.denizcanbagdatlioglu.self.analysis.domain.entity.Question;
