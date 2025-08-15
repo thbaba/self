@@ -8,6 +8,7 @@ import com.denizcanbagdatlioglu.self.analysis.domain.entity.Question;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import com.denizcanbagdatlioglu.self.config.jwt.JwtAuthentication;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +53,11 @@ public class AnalysisController {
                 .map(QuestionResponse::new)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.internalServerError().build());
+    }
+
+    @GetMapping("/model")
+    public ResponseEntity<String> getAIModel(@Value("${ai.model}") String model) {
+        return ResponseEntity.ok("{ \"model\": \""+model+"\" }");
     }
 
 }

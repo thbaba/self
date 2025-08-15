@@ -9,6 +9,7 @@ import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
@@ -151,9 +152,9 @@ public class AIEngineUnitTest {
         }
 
         @Bean
-        public MappingBuilder ppp() {
+        public MappingBuilder mappingBuilder() {
             return post("/api/chat")
-                    .withRequestBody(matchingJsonPath("$.model", equalTo("gemma3:27b")))
+                    .withRequestBody(matchingJsonPath("$.model"))
                     .withRequestBody(matchingJsonPath("$.messages[0].role", equalTo("system")))
                     .withRequestBody(matchingJsonPath("$.messages[0].content", containing("Danışanın 18 yaşında.")))
                     .withRequestBody(matchingJsonPath("$.messages[1].role", equalTo("user")))
@@ -168,8 +169,8 @@ public class AIEngineUnitTest {
         }
 
         @Bean
-        public AIEngine engine() {
-            return new AIEngine(new RestTemplate());
+        public AIEngine engine(@Value("${ai.model}") String model) {
+            return new AIEngine(new RestTemplate(), model);
         }
     }
 }

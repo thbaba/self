@@ -25,6 +25,8 @@ public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
     
     private final RestTemplate restTemplate;
 
+    private final String model;
+
     @Override
     public String analyze(BirthDate birthDate, String insight, List<Analysis> analyses) {
         AIRequest request = request(birthDate, insight, analyses);
@@ -49,7 +51,7 @@ public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
             if(!response.getStatusCode().is2xxSuccessful())
                 throw new AIAgentException("AI agent did not respond!");
 
-            return response.getBody().message().content().trim();
+            return response.getBody().message().content().trim().replaceAll("[*]+", "");
         } catch (NullPointerException | HttpServerErrorException e) {
             throw new AIAgentException("AI agent did not respond!");
         }
@@ -63,7 +65,7 @@ public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
         conversation.addFirst(systemMessage);
         conversation.addLast(userMessage);
 
-        return new AIRequest("gemma3:27b", conversation, false);
+        return new AIRequest(model, conversation, false);
     }
 
     private AIRequest request(BirthDate birthDate, String insight, List<Analysis> analyses) {
@@ -74,7 +76,7 @@ public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
         conversation.addFirst(systemMessage);
         conversation.addLast(userMessage);
 
-        return new AIRequest("gemma3:27b", conversation, false);
+        return new AIRequest(model, conversation, false);
     }
 
     private List<AIMessage> conversationHistory(List<Analysis> analyses) {
@@ -88,7 +90,7 @@ public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
         return new AIMessage("system", new StringBuilder()
                 .append("Sen bir psikologsun. Jungien tarzda terapi yapıyorsun. Danışanın ")
                 .append(birthDate.getAge())
-                .append(" yaşında. Geçmiş konuşmalarınızı da göz önünde bulundurarak danışanının yazdıklarını jungien tarzda analiz ediyorsun.")
+                .append(" yaşında. Geçmiş konuşmalarınızı da göz önünde bulundurarak danışanının yazdıklarını jungien tarzda analiz ediyorsun. Kısa ama öz konuşmayı tercih ediyorsun. Türkçe konuşuyorsun.")
                 .toString());
     }
 

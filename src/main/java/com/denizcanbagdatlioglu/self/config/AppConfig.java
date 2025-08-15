@@ -18,6 +18,7 @@ import com.denizcanbagdatlioglu.self.wiki.domain.entity.Archetype;
 import com.denizcanbagdatlioglu.self.wiki.domain.entity.Symbol;
 import com.denizcanbagdatlioglu.self.wiki.domain.valueobject.FigureType;
 import com.denizcanbagdatlioglu.self.wiki.repository.FigureRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -81,14 +82,15 @@ public class AppConfig {
     }
 
     @Bean
-    public AIEngine aiEngine(RestTemplate template) {
-        return new AIEngine(template);
+    public AIEngine aiEngine(RestTemplate template,
+                             @Value("${ai.model}") String model) {
+        return new AIEngine(template, model);
     }
 
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.connectTimeout(Duration.ofSeconds(10))
-                .readTimeout(Duration.ofMinutes(2))
+    public RestTemplate restTemplate(RestTemplateBuilder builder, @Value("${ai.timeout}") int minutes) {
+        return builder.connectTimeout(Duration.ofSeconds(20))
+                .readTimeout(Duration.ofMinutes(minutes))
                 .build();
     }
 

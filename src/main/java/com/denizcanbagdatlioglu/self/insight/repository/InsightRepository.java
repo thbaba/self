@@ -46,7 +46,7 @@ public class InsightRepository implements IInsightRepository {
     @Override
     public Optional<Insight> getInsightById(ID id) {
         String sql = "select it.id id, it.title title , it.date date, it.content content, " +
-                "at.id author_id, at.birth_date author_birth_date" +
+                "at.id author_id, at.birth_date author_birth_date " +
                 "from insights it inner join users at on it.author_id = at.id " +
                 "where it.id = ?";
 

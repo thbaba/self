@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "5688c664-667f-46e7-b44b-e8c73b8aeee2",
+		"name": "Self",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29362179"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "registration",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birthDate\": \"2000-10-28\",\r\n    \"gender\": \"MALE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/registration",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Insight",
+			"item": [
+				{
+					"name": "create2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"İnsan Olmak\",\r\n    \"content\": \"İlk kez gerçekten insan ilişkilerimle yüzleşiyorum. Geçmişte kırdığım, ihmal ettiğim veya yanlış anladığım insanlar için pişmanlığım var. Kendimi kapatmak kolaydı ama şimdi biliyorum ki, doğru bağlar kurmak cesaret istiyor. Kendi duygularımı ve başkalarının duygularını anlamaya zaman ayırmazsam, yalnızca geçip giden anların pişmanlığını biriktiririm. Artık hislerimi saklamadan, açık ve dürüst olmaya çalışacağım.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/insight",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"insight"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"İlk deneme\",\r\n    \"content\": \"İlk kez kendimle yüzleşecek bir yazı yazmayı deniyorum. Kendimle hesaplaşmamın ilk adımı. Çok pişmanlığım var. Şimdilik işime odaklanıyorum. İşimde istediğim noktaya gelmek için çok çalışıyorum. Bunu tamamlamamın ardından içimde kalan her şeyi yapmak için kendime zaman yaratma sözü vermeliyim. Yoksa bu hayatı boşa yaşama riskiyle karşılaşırım.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/insight",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"insight"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/insight",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"insight"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/insight/6a2bfe8b-70b4-45dd-b10d-96380f922fce",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"insight",
+								"6a2bfe8b-70b4-45dd-b10d-96380f922fce"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "analysis",
+			"item": [
+				{
+					"name": "analyze",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/analysis/efa54a30-c4a1-4ce0-95e1-6fa235b09dfd",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"analysis",
+								"efa54a30-c4a1-4ce0-95e1-6fa235b09dfd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAnalysis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/analysis/69fedd04-a9f7-49ec-bc38-2169843cf03b",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"analysis",
+								"69fedd04-a9f7-49ec-bc38-2169843cf03b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "aimodel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/analysis/model",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"analysis",
+								"model"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wiki",
+			"item": [
+				{
+					"name": "getSymbol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/wiki/symbol/093072ff-0022-4e08-83b6-a271b96b6c56",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"wiki",
+								"symbol",
+								"093072ff-0022-4e08-83b6-a271b96b6c56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getArchetype",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/wiki/archetype/00dcad84-1361-472d-8151-a86871de89e0",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"wiki",
+								"archetype",
+								"00dcad84-1361-472d-8151-a86871de89e0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSymbols",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/wiki/symbol",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"wiki",
+								"symbol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getArchetypes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost/api/wiki/archetype",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"wiki",
+								"archetype"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4M2IxZjhlYy1mYjk1LTQzMzYtOTg2NS0yMDQ0YjNiMzE0MjQifQ.pNZCLFs6ZrmCU1SEeFa2yLn8oMjhNfdTOdVzI3O4CiYRCJsHA0TRco7qfF9osatL-rH4ChW0I61SNFhvwIiV6w",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
