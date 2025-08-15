@@ -29,9 +29,14 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
 classes = AIEngineUnitTest.AppConfig.class)
 @EnableWireMock({
-        @ConfigureWireMock(name = "ai-server", port = 11434)
+        @ConfigureWireMock(name = "ai-server", port = 0)
 })
-@TestPropertySource(properties = "spring.flyway.enabled=false")
+@TestPropertySource(properties = {
+        "self.ai.model=gemma3:4b",
+        "self.ai.timeout=1",
+        "self.ai.history-size=20",
+        "self.ai.url=${wiremock.server.baseUrl}/api/chat"
+})
 public class AIEngineUnitTest {
     @InjectWireMock("ai-server")
     WireMockServer server;
@@ -133,6 +138,7 @@ public class AIEngineUnitTest {
 
     @SpringBootApplication
     static class AppConfig {
+
         @Bean
         public List<Analysis> analyses() {
             return List.of(
@@ -169,7 +175,7 @@ public class AIEngineUnitTest {
         }
 
         @Bean
-        public AIEngine engine(@Value("${ai.model}") String model) {
+        public AIEngine engine(@Value("${self.ai.model}") String model) {
             return new AIEngine(new RestTemplate(), model);
         }
     }

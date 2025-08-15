@@ -10,7 +10,7 @@ import com.denizcanbagdatlioglu.self.analysis.domain.usecase.GenerateQuestionUse
 import com.denizcanbagdatlioglu.self.analysis.domain.usecase.GetAnalysisUseCase;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
-import com.denizcanbagdatlioglu.self.config.AppConst;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +23,9 @@ public class AnalysisService implements AnalyzeUseCase, GenerateQuestionUseCase,
     private final IAnalyzeEngine analyzeEngine;
 
     private final IQuestionEngine questionEngine;
+
+    @Value("${self.ai.history-size}")
+    private int aiHistorySize;
 
 
     public AnalysisService(IAnalysisRepository repository, IAnalyzeEngine analyzeEngine, IQuestionEngine questionEngine) {
@@ -40,7 +43,7 @@ public class AnalysisService implements AnalyzeUseCase, GenerateQuestionUseCase,
         try {
             LocalDate birthDate = repository.findBirthDateByID(userID).get();
             String insight = repository.findInsightByID(userID, insightID).get();
-            List<Analysis> analyses = repository.findAnalyses(userID, AppConst.AI_HISTORY_SIZE);
+            List<Analysis> analyses = repository.findAnalyses(userID, aiHistorySize);
 
             String analysis = analyzeEngine.analyze(new BirthDate(birthDate), insight, analyses);
 
@@ -60,7 +63,7 @@ public class AnalysisService implements AnalyzeUseCase, GenerateQuestionUseCase,
 
         try {
             LocalDate birthDate = repository.findBirthDateByID(userID).get();
-            List<Analysis> analyses = repository.findAnalyses(userID, AppConst.AI_HISTORY_SIZE);
+            List<Analysis> analyses = repository.findAnalyses(userID, aiHistorySize);
 
             String question = questionEngine.get(new BirthDate(birthDate), analyses);
 

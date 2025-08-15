@@ -8,7 +8,8 @@ import com.denizcanbagdatlioglu.self.analysis.repository.dto.AIRequest;
 import com.denizcanbagdatlioglu.self.analysis.repository.dto.AIResponse;
 import com.denizcanbagdatlioglu.self.analysis.repository.exception.AIAgentException;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,12 +21,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
     
     private final RestTemplate restTemplate;
 
     private final String model;
+
+    @Value( "${self.ai.url}")
+    private String aiUrl;
 
     @Override
     public String analyze(BirthDate birthDate, String insight, List<Analysis> analyses) {
@@ -46,7 +50,7 @@ public class AIEngine implements IAnalyzeEngine, IQuestionEngine {
 
         try {
             ResponseEntity<AIResponse> response =
-                    restTemplate.postForEntity("http://localhost:11434/api/chat", entity, AIResponse.class);
+                    restTemplate.postForEntity(aiUrl, entity, AIResponse.class);
 
             if(!response.getStatusCode().is2xxSuccessful())
                 throw new AIAgentException("AI agent did not respond!");

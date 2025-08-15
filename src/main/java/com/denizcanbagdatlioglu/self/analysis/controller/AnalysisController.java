@@ -2,9 +2,7 @@ package com.denizcanbagdatlioglu.self.analysis.controller;
 
 import com.denizcanbagdatlioglu.self.analysis.application.AnalysisService;
 import com.denizcanbagdatlioglu.self.analysis.controller.dto.AnalyzeResponse;
-import com.denizcanbagdatlioglu.self.analysis.controller.dto.QuestionResponse;
 import com.denizcanbagdatlioglu.self.analysis.domain.entity.Analysis;
-import com.denizcanbagdatlioglu.self.analysis.domain.entity.Question;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
 import com.denizcanbagdatlioglu.self.config.jwt.JwtAuthentication;
 import lombok.RequiredArgsConstructor;
@@ -44,19 +42,8 @@ public class AnalysisController {
                 .orElse(ResponseEntity.internalServerError().build());
     }
 
-    @GetMapping("/question")
-    public ResponseEntity<QuestionResponse> getQuestion(JwtAuthentication authentication) {
-        Optional<Question> maybeQuestion = service.generateQuestion(authentication.getName());
-
-        return maybeQuestion
-                .map(Question::get)
-                .map(QuestionResponse::new)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.internalServerError().build());
-    }
-
     @GetMapping("/model")
-    public ResponseEntity<String> getAIModel(@Value("${ai.model}") String model) {
+    public ResponseEntity<String> getAIModel(@Value("${self.ai.model}") String model) {
         return ResponseEntity.ok("{ \"model\": \""+model+"\" }");
     }
 

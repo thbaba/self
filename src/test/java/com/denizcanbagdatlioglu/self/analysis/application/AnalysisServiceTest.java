@@ -7,13 +7,13 @@ import com.denizcanbagdatlioglu.self.analysis.domain.repository.IAnalyzeEngine;
 import com.denizcanbagdatlioglu.self.analysis.domain.repository.IQuestionEngine;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.BirthDate;
 import com.denizcanbagdatlioglu.self.common.domain.valueobject.ID;
-import com.denizcanbagdatlioglu.self.config.AppConst;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,6 +38,9 @@ public class AnalysisServiceTest {
     @InjectMocks
     private AnalysisService service;
 
+    @Value("${self.ai.history-size}")
+    private int aiHistorySize;
+
     @Test
     public void shouldAnalyze() {
         String userID = ID.random().getValue();
@@ -48,7 +51,7 @@ public class AnalysisServiceTest {
 
         when(repository.findBirthDateByID(any())).thenReturn(Optional.of(birthDate));
         when(repository.findInsightByID(any(), any())).thenReturn(Optional.of(insight));
-        when(repository.findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE))).thenReturn(new ArrayList<>());
+        when(repository.findAnalyses(any(), eq(aiHistorySize))).thenReturn(new ArrayList<>());
         when(analyzeEngine.analyze(any(BirthDate.class), any(), any())).thenReturn(analysisText);
         when(repository.saveAnalysis(any(), any(), anyString())).thenReturn(true);
 
@@ -59,7 +62,7 @@ public class AnalysisServiceTest {
         Assertions.assertThat(result).get().extracting(Analysis::insight).isEqualTo(insight);
         verify(repository).findBirthDateByID(any());
         verify(repository).findInsightByID(any(), any());
-        verify(repository).findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE));
+        verify(repository).findAnalyses(any(), eq(aiHistorySize));
         verify(analyzeEngine).analyze(any(BirthDate.class), any(), any());
         verify(repository).saveAnalysis(any(), any(), anyString());
     }
@@ -73,7 +76,7 @@ public class AnalysisServiceTest {
 
         when(repository.findBirthDateByID(any())).thenReturn(Optional.of(birthDate));
         when(repository.findInsightByID(any(), any())).thenReturn(Optional.of(insight));
-        when(repository.findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE))).thenReturn(new ArrayList<>());
+        when(repository.findAnalyses(any(), eq(aiHistorySize))).thenReturn(new ArrayList<>());
         when(analyzeEngine.analyze(any(BirthDate.class), any(), any())).thenThrow(RuntimeException.class);
 
         Optional<Analysis> result = service.analyzeAndSave(userID, insightID);
@@ -81,7 +84,7 @@ public class AnalysisServiceTest {
         Assertions.assertThat(result).isEmpty();
         verify(repository).findBirthDateByID(any());
         verify(repository).findInsightByID(any(), any());
-        verify(repository).findAnalyses(any(), eq(AppConst.AI_HISTORY_SIZE));
+        verify(repository).findAnalyses(any(), eq(aiHistorySize));
         verify(analyzeEngine).analyze(any(BirthDate.class), any(), any());
         verify(repository, never()).saveAnalysis(any(), any(), anyString());
     }

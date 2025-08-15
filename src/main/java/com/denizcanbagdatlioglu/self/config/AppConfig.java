@@ -83,12 +83,12 @@ public class AppConfig {
 
     @Bean
     public AIEngine aiEngine(RestTemplate template,
-                             @Value("${ai.model}") String model) {
+                             @Value("${self.ai.model}") String model) {
         return new AIEngine(template, model);
     }
 
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder, @Value("${ai.timeout}") int minutes) {
+    public RestTemplate restTemplate(RestTemplateBuilder builder, @Value("${self.ai.timeout}") int minutes) {
         return builder.connectTimeout(Duration.ofSeconds(20))
                 .readTimeout(Duration.ofMinutes(minutes))
                 .build();

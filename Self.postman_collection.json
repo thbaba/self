@@ -41,7 +41,14 @@
 				}
 			],
 			"auth": {
-				"type": "noauth"
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNjc5NWRjNi0zMmJmLTQ2N2QtYWJlYy04NTcxMGVmNDVjOTIifQ.v7EQSoyzN-66axExliUq5DDkmqZtdkDHPXMhii0c9PE",
+						"type": "string"
+					}
+				]
 			},
 			"event": [
 				{
@@ -159,14 +166,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/api/insight/6a2bfe8b-70b4-45dd-b10d-96380f922fce",
+							"raw": "localhost/api/insight/43680698-261b-4cf9-8287-2613a13d25fb",
 							"host": [
 								"localhost"
 							],
 							"path": [
 								"api",
 								"insight",
-								"6a2bfe8b-70b4-45dd-b10d-96380f922fce"
+								"43680698-261b-4cf9-8287-2613a13d25fb"
 							]
 						}
 					},
@@ -192,14 +199,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/api/analysis/efa54a30-c4a1-4ce0-95e1-6fa235b09dfd",
+							"raw": "localhost/api/analysis/43680698-261b-4cf9-8287-2613a13d25fb",
 							"host": [
 								"localhost"
 							],
 							"path": [
 								"api",
 								"analysis",
-								"efa54a30-c4a1-4ce0-95e1-6fa235b09dfd"
+								"43680698-261b-4cf9-8287-2613a13d25fb"
 							]
 						}
 					},
@@ -211,14 +218,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/api/analysis/69fedd04-a9f7-49ec-bc38-2169843cf03b",
+							"raw": "localhost/api/analysis/43680698-261b-4cf9-8287-2613a13d25fb",
 							"host": [
 								"localhost"
 							],
 							"path": [
 								"api",
 								"analysis",
-								"69fedd04-a9f7-49ec-bc38-2169843cf03b"
+								"43680698-261b-4cf9-8287-2613a13d25fb"
 							]
 						}
 					},
@@ -242,6 +249,31 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "question",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost/api/question",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"question"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -254,7 +286,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/api/wiki/symbol/093072ff-0022-4e08-83b6-a271b96b6c56",
+							"raw": "localhost/api/wiki/symbol/72f985d0-5004-492e-8e02-95beecf0d135",
 							"host": [
 								"localhost"
 							],
@@ -262,7 +294,7 @@
 								"api",
 								"wiki",
 								"symbol",
-								"093072ff-0022-4e08-83b6-a271b96b6c56"
+								"72f985d0-5004-492e-8e02-95beecf0d135"
 							]
 						}
 					},
@@ -341,7 +373,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4M2IxZjhlYy1mYjk1LTQzMzYtOTg2NS0yMDQ0YjNiMzE0MjQifQ.pNZCLFs6ZrmCU1SEeFa2yLn8oMjhNfdTOdVzI3O4CiYRCJsHA0TRco7qfF9osatL-rH4ChW0I61SNFhvwIiV6w",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MTllZmU2YS1hYWZhLTQyMDMtYjczMy1hOThhY2UxMGJiNzQifQ.pRbA213Pxz2fDZtPkyJbDskAZ-cuI1rqYoFE86abQZcAwVwXODUFqihl3mOclZ2DFKhiEh0jAyM1HxbhCc0hJA",
 				"type": "string"
 			}
 		]
