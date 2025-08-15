@@ -60,7 +60,7 @@ public class InsightController {
                 .filter(insight -> insight.author().id().equals(ID.of(authentication.getName())))
                 .map(mapper::toResponse)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.ok(null));
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
