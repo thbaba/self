@@ -35,7 +35,8 @@ classes = AIEngineUnitTest.AppConfig.class)
         "self.ai.model=gemma3:4b",
         "self.ai.timeout=1",
         "self.ai.history-size=20",
-        "self.ai.url=${wiremock.server.baseUrl}/api/chat"
+        "self.ai.url=${wiremock.server.baseUrl}/api/chat",
+        "spring.flyway.enabled=false"
 })
 public class AIEngineUnitTest {
     @InjectWireMock("ai-server")
