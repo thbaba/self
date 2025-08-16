@@ -1,0 +1,53 @@
+services:
+  self:
+    build: .
+    container_name: self
+    depends_on:
+      - postgres
+    ports:
+      - "80:80"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/selfdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SELF_AI_URL: http://ollama:11434/api/chat
+    networks:
+      - self_network
+
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: selfdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - self_network
+
+  ollama:
+    image: ollama/ollama:0.11.4
+    container_name: ollama
+    restart: always
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    networks:
+      - self_network
+
+networks:
+  self_network:
+
+volumes:
+  postgres_data:
+    name: postgres_data
+  ollama:
+    name: ollama
