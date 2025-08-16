@@ -11,9 +11,17 @@ to facilitate self-awareness and personal growth.
 
 **Purpose**
 
-- Encourage users to write on personal experiences.
-- Provide `AI-driven` psychological analysis and reflective questions tailored to each user.
-- Educate users about Jungian archetypes and symbols for deeper understanding.
+Encourage users to write on personal experiences.
+Provide `AI-driven` psychological analysis and reflective questions tailored to each user.
+Educate users about Jungian archetypes and symbols for deeper understanding.
+
+### Running The Application
+
+```bash
+docker-compose up -d
+```
+Note: It will download gemma3:4b ai model. The model has 3GB size so downloading may take a long time depending of your internet connection.
+
 
 ### Architecture
 - `Spring Boot` Backend
