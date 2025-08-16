@@ -1,0 +1,23 @@
+name: CI - Spring Boot Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@4
+
+      - name: Setup JDK
+        uses: actions/setup-java@4
+        with:
+          distribution: liberica
+          java-version: 24.0.1
+          cache: maven
+
+      - name: Build and Run Tests
+        run: mvn clean verify
