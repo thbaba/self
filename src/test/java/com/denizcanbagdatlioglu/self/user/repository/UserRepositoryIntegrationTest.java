@@ -30,7 +30,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class UserRepositoryIntegrationTest {
 
     @Container
-    private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
+    private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:17")
         .withDatabaseName("testdb")
         .withUsername("testUser")
         .withPassword("testPassword")

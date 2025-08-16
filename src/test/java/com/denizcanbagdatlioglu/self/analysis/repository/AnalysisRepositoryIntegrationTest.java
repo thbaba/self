@@ -30,7 +30,7 @@ import java.util.Optional;
 public class AnalysisRepositoryIntegrationTest {
 
     @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:17")
             .withDatabaseName("testdb")
             .withUsername("testusername")
             .withPassword("testpassword");

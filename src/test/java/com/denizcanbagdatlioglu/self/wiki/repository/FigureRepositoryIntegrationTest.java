@@ -29,10 +29,10 @@ import java.util.Optional;
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DisplayName("Figure repository integration test")
-public class FigureRepositoryTest {
+public class FigureRepositoryIntegrationTest {
 
     @Container
-    private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
+    private static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:17")
             .withDatabaseName("testdb")
             .withUsername("testuser")
             .withPassword("testpassword");

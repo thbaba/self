@@ -16,7 +16,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public class SelfApplicationTest {
 
     @Container
-    static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer("postgres:latest")
+    static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer("postgres:17")
             .withDatabaseName("testSelfdb")
             .withUsername("testUser")
             .withPassword("testPassword");
