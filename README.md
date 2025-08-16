@@ -1,4 +1,4 @@
-# Self 
+# Self
 ### Jungian Psychologist Application
 
 **Project Overview**
