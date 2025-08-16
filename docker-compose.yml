@@ -11,6 +11,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SELF_AI_URL: http://ollama:11434/api/chat
+      SELF_AI_MODEL: gemma3:4b
     networks:
       - self_network
 
@@ -42,6 +43,17 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     networks:
       - self_network
+    depends_on:
+      - ollama-init
+
+  ollama-init:
+    image: ollama/ollama:0.11.4
+    container_name: ollama-init
+    restart: "no"
+    volumes:
+      - ollama:/root/.ollama
+      - ./ollama-entrypoint.sh:/entrypoint.sh
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
 
 networks:
   self_network:
